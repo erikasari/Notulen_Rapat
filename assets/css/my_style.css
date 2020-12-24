@@ -1,0 +1,34 @@
+  .buttons-print {
+    background-color: lightgray;
+    color: black;
+    font-size: 14px;
+  }
+
+  .buttons-pdf {
+    background-color: lightgray;
+    color: black;
+    font-size: 14px;
+  }
+
+  .buttons-excel {
+    background-color: lightgray;
+    color: black;
+    font-size: 14px;
+  }
+
+  .buttons-copy {
+    background-color: lightgray;
+    color: black;
+    font-size: 14px;
+  }
+
+  .buttons-csv {
+    background-color: lightgray;
+    color: black;
+    font-size: 14px;
+  }
+
+  div.dt-buttons {
+    position: relative;
+    float: left;
+  }
