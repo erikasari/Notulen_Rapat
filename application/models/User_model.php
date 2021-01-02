@@ -316,4 +316,23 @@ class User_model extends CI_model
 		$insert = $this->db->insert_batch('upload_foto_sat', $data);
 		return $insert ? true : false;
 	}
+
+	public function registrasiDataUser()
+	{
+		$data = [
+			'nama_peserta' => $this->input->post('nama_peserta'),
+			'nama_samar' => $this->input->post('nama_samar'),
+			'no_hp' => $this->input->post('no_hp'),
+			'email' => $this->input->post('email'),
+			'password' => $this->input->post('password'),
+			'status_aktif' => 0
+		];
+
+		$this->db->insert('tb_peserta', $data);
+	}
+
+	public function getAllUser()
+	{
+		return $this->db->get('tb_peserta')->result_array();
+	}
 }

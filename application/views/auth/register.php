@@ -29,7 +29,7 @@
 
 <body>
     <div class="container" style="width:80%;">
-        <div id="loginbox" style="margin-top:160px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div id="loginbox" style="margin-top:100px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="panel-title font-weight-bolder text-center" style="font-weight:700;">HALAMAN REGISTER</div>
@@ -39,32 +39,34 @@
                     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
                     <?php echo $this->session->flashdata('msg'); ?>
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                    <form id="loginform" class="form-horizontal" role="form" action="<?php echo base_url('auth/index'); ?>" method="post">
+                    <form id="loginform" class="form-horizontal" role="form" action="<?php echo base_url('auth/register'); ?>" method="post">
                         <!-- Nama Asli -->
-                        <?php echo form_error('nama asli', '<small class="text-danger pl-1">', '</small>'); ?>
+                        <?php echo form_error('username', '<small class="text-danger pl-1">', '</small>'); ?>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="register-username" type="text" class="form-control" name="username" value="<?php echo set_value('nama_asli'); ?>" placeholder="Nama asli">
+                            <input id="register-username" type="text" class="form-control" name="nama_peserta" value="<?php echo set_value('nama_peserta'); ?>" placeholder="Nama asli">
                         </div>
                         <!-- Nama Samar -->
-                        <?php echo form_error('nama samar', '<small class="text-danger pl-1">', '</small>'); ?>
+                        <?php echo form_error('nama', '<small class="text-danger pl-1">', '</small>'); ?>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
-                            <input id="register-namasamar" type="text" class="form-control" name="namasamar" value="<?php echo set_value('nama_samar'); ?>" placeholder="Nama Samaran">
+                            <input id="register-nama" type="text" class="form-control" name="nama_samar" value="<?php echo set_value('nama_samar'); ?>" placeholder="Nama Samaran">
+                        </div>
+
+                        <!-- No telepon -->
+                        <?php echo form_error('telepon', '<small class="text-danger pl-1">', '</small>'); ?>
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            <input id="register-telepon" type="number" class="form-control" name="no_hp" value="<?php echo set_value('no_hp'); ?>" placeholder="No.telepon">
                         </div>
 
                         <!-- Email -->
                         <?php echo form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="register-username" type="email" class="form-control" name="email" value="<?php echo set_value('email'); ?>" placeholder="Alamat Email">
+                            <input id="register-email" type="email" class="form-control" name="email" value="<?php echo set_value('email'); ?>" placeholder="Email">
                         </div>
-                        <!-- No telepon -->
-                        <?php echo form_error('no hp', '<small class="text-danger pl-1">', '</small>'); ?>
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="register-notlp" type="text" class="form-control" name="notlp" value="<?php echo set_value('no_tlp'); ?>" placeholder="No.telepon">
-                        </div>
+
                         <!-- Password -->
                         <?php echo form_error('password', '<small class="text-danger pl-1">', '</small>'); ?>
                         <div style="margin-bottom: 25px" class="input-group">
@@ -76,7 +78,7 @@
                         <?php echo form_error('password2', '<small class="text-danger pl-1">', '</small>'); ?>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="register-password2" type="password" class="form-control" name="password2" placeholder="Password">
+                            <input id="register-password2" type="password" class="form-control" name="password2" placeholder="Confirm Password">
                         </div>
                         <!-- <div class="input-group">
 							<div class="checkbox">
@@ -92,7 +94,11 @@
                                 <!-- <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
                             </div>
                         </div>
+
                         <hr>
+                        <div class="text-center">
+                            <a class="small" href="<?= base_url('auth/index') ?>">Sudah Punya Akun? Login</a>
+                        </div>
 
                     </form>
 

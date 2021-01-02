@@ -3,7 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 
 class Auth extends CI_Controller
+
 {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('User_model', 'user');
+	}
+
 	public function index()
 	{
 		$this->form_validation->set_rules('email', 'Alamat Email', 'trim|required');
@@ -59,8 +66,32 @@ class Auth extends CI_Controller
 		redirect('auth/index');
 	}
 
-	public function registrasi()
+	public function register()
 	{
-		$this->load->view('auth/register');
+		$data['title'] = 'Sign Up';
+		$this->load->model('User_model');
+		$this->form_validation->set_rules('username', 'nama_peserta', 'required');
+		$this->form_validation->set_rules('nama', 'nama_samar', 'required');
+		$this->form_validation->set_rules('telepon', 'no_hp', 'required');
+		$this->form_validation->set_rules('email', 'email', 'required|trim|is_unique[tb_peserta.email]', array(
+			'is_unique' => 'Alamat Email sudah ada'
+		));
+		$this->form_validation->set_rules('password', 'password', 'required|trim|min_length[3]|matches[password2]', array(
+			'matches' => 'Password tidak sama',
+			'min_length' => 'password min 3 karakter'
+		));
+		$this->form_validation->set_rules('password2', 'password', 'required|trim|matches[password]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['title'] = 'Register';
+			$data['peserta'] = $this->db->get_where('tb_peserta', ['email' => $this->session->userdata('email')])->row_array();
+			$data['list_peserta'] = $this->db->get('tb_peserta')->result_array();
+
+			$this->load->view('auth/register');
+		} else {
+			$this->User_model->registrasiDataUser();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! Akun Anda Telah Dibuat. Tunggu hingga akun anda diverifikasi</div>');
+			redirect('login');
+		}
 	}
 }
