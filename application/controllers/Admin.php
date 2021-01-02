@@ -112,10 +112,57 @@ class Admin extends CI_Controller
 		}
 	}
 
+	public function man_peserta()
+	{
+
+		$this->form_validation->set_rules('username', 'username', 'required|trim');
+		$this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|is_unique[mst_peserta.email]', array(
+			'is_unique' => 'Alamat Email sudah ada'
+		));
+		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', array(
+			'matches' => 'Password tidak sama',
+			'min_length' => 'password min 3 karakter'
+		));
+		$this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['title'] = 'Management Peserta';
+			$data['peserta'] = $this->db->get_where('mst_peserta', ['email' => $this->session->userdata('email')])->row_array();
+			$data['list_peserta'] = $this->db->get('mst_peserta')->result_array();
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar_admin', $data);
+			$this->load->view('admin/master/man_peserta', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$data = array(
+				'username' => $this->input->post('username', true),
+				'email' => $this->input->post('email', true),
+				'level' => $this->input->post('level', true),
+				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+				// 'date_created' => date('Y/m/d'),
+				'image' => 'default.png',
+				'is_active' => 1
+			);
+			$this->db->insert('mst_peserta', $data);
+			$this->session->set_flashdata('message', 'Simpan Data');
+			redirect('admin/man_peserta');
+		}
+	}
+
+
+
+
 	public function get_user()
 	{
 		$id_user = $this->input->post('id_user');
 		echo json_encode($this->db->get_where('mst_user', ['id_user' => $id_user])->row_array());
+	}
+
+	public function get_peserta()
+	{
+		$id_peserta = $this->input->post('id_peserta');
+		echo json_encode($this->db->get_where('mst_peserta', ['mst_peserta' => $id_peserta])->row_array());
 	}
 
 	public function edit_user()
@@ -132,6 +179,22 @@ class Admin extends CI_Controller
 		$this->db->update('mst_user');
 		$this->session->set_flashdata('message', 'Simpan Perubahan');
 		redirect('admin/man_user');
+	}
+
+	public function edit_peserta()
+	{
+		$id_peserta = $this->input->post('id_peserta');
+		$username = $this->input->post('username');
+		$level = $this->input->post('level');
+		$is_active = $this->input->post('is_active');
+
+		$this->db->set('username', $username);
+		$this->db->set('level', $level);
+		$this->db->set('is_active', $is_active);
+		$this->db->where('id_peserta', $id_peserta);
+		$this->db->update('mst_peserta');
+		$this->session->set_flashdata('message', 'Simpan Perubahan');
+		redirect('admin/man_peserta');
 	}
 
 	public function mst_jenis()

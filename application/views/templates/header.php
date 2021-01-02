@@ -79,6 +79,11 @@
 						Level : <strong><?php echo $user['level']; ?></strong>
 					</a>
 				</li>
+				<!-- <li class="nav-item dropdown">
+					<a class="nav-link" data-toggle="dropdown" href="#">
+						Level : <strong><?php echo $peserta['level']; ?></strong>
+					</a>
+				</li> -->
 			</ul>
 		</nav>
 		<!-- /.navbar -->

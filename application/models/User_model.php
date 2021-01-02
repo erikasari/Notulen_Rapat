@@ -320,19 +320,19 @@ class User_model extends CI_model
 	public function registrasiDataUser()
 	{
 		$data = [
-			'nama_peserta' => $this->input->post('nama_peserta'),
-			'nama_samar' => $this->input->post('nama_samar'),
-			'no_hp' => $this->input->post('no_hp'),
+			'username' => $this->input->post('username'),
+			'nama' => $this->input->post('nama'),
+			'telepon' => $this->input->post('telepon'),
 			'email' => $this->input->post('email'),
 			'password' => $this->input->post('password')
 
 		];
 
-		$this->db->insert('tb_peserta', $data);
+		$this->db->insert('mst_peserta', $data);
 	}
 
 	public function getAllUser()
 	{
-		return $this->db->get('tb_peserta')->result_array();
+		return $this->db->get('mst_peserta')->result_array();
 	}
 }

@@ -69,10 +69,10 @@ class Auth extends CI_Controller
 	public function register()
 	{
 		$this->load->model('User_model');
-		$this->form_validation->set_rules('nama_peserta', 'nama_peserta', 'required');
-		$this->form_validation->set_rules('nama_samar', 'nama_samar', 'required');
-		$this->form_validation->set_rules('no_hp', 'no_hp', 'required');
-		$this->form_validation->set_rules('email', 'email', 'required|trim|is_unique[tb_peserta.email]', array(
+		$this->form_validation->set_rules('username', 'username', 'required');
+		$this->form_validation->set_rules('nama', 'nama', 'required');
+		$this->form_validation->set_rules('telepon', 'telepon', 'required');
+		$this->form_validation->set_rules('email', 'email', 'required|trim|is_unique[mst_peserta.email]', array(
 			'is_unique' => 'Alamat Email sudah ada'
 		));
 		$this->form_validation->set_rules('password', 'password', 'required|trim|min_length[3]|matches[password2]', array(
@@ -83,8 +83,8 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['title'] = 'Register';
-			$data['peserta'] = $this->db->get_where('tb_peserta', ['email' => $this->session->userdata('email')])->row_array();
-			$data['list_peserta'] = $this->db->get('tb_peserta')->result_array();
+			$data['peserta'] = $this->db->get_where('mst_peserta', ['email' => $this->session->userdata('email')])->row_array();
+			$data['list_peserta'] = $this->db->get('mst_peserta')->result_array();
 
 			$this->load->view('auth/register');
 		} else {

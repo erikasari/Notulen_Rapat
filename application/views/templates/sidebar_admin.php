@@ -29,13 +29,13 @@
 				</li>
 				<li class="nav-item has-treeview">
 					<a href="<?php echo base_url('admin/man_user'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-users"></i>
+						<i class="nav-icon fa fa-id-card"></i>
 						<p>Manajemen Notulen</p>
 					</a>
 				</li>
 
 				<li class="nav-item has-treeview">
-					<a href="<?php echo base_url('admin/man_user'); ?>" class="nav-link">
+					<a href="<?php echo base_url('admin/man_peserta'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-users"></i>
 						<p>Manajemen Peserta</p>
 					</a>
@@ -49,7 +49,7 @@
 				</li>
 				<li class="nav-item has-treeview">
 					<a href="<?php echo base_url('admin/rapat'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-handshake"></i>
+						<i class="nav-icon fa fa-folder-open"></i>
 						<p>Data Rapat</p>
 					</a>
 				</li>

@@ -44,20 +44,20 @@
                         <?php echo form_error('username', '<small class="text-danger pl-1">', '</small>'); ?>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="register-username" type="text" class="form-control" name="nama_peserta" value="<?php echo set_value('nama_peserta'); ?>" placeholder="Nama asli">
+                            <input id="register-username" type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" placeholder="Nama Lengkap">
                         </div>
                         <!-- Nama Samar -->
                         <?php echo form_error('nama', '<small class="text-danger pl-1">', '</small>'); ?>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
-                            <input id="register-nama" type="text" class="form-control" name="nama_samar" value="<?php echo set_value('nama_samar'); ?>" placeholder="Nama Samaran">
+                            <input id="register-nama" type="text" class="form-control" name="nama" value="<?php echo set_value('nama'); ?>" placeholder="Nama Samaran">
                         </div>
 
                         <!-- No telepon -->
                         <?php echo form_error('telepon', '<small class="text-danger pl-1">', '</small>'); ?>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="register-telepon" type="number" class="form-control" name="no_hp" value="<?php echo set_value('no_hp'); ?>" placeholder="No.telepon">
+                            <input id="register-telepon" type="number" class="form-control" name="telepon" value="<?php echo set_value('telepon'); ?>" placeholder="No.telepon">
                         </div>
 
                         <!-- Email -->

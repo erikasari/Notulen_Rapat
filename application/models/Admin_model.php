@@ -39,7 +39,7 @@ class Admin_model extends CI_model
 
 		$query = $this->db->query(
 			"SELECT CONCAT(YEAR(date_created),'/',MONTH(date_created)) AS tahun_bulan, COUNT(*) AS count_bulan
-                FROM mst_user
+                FROM mst_user 
                 WHERE CONCAT(YEAR(date_created),'/',MONTH(date_created))=CONCAT(YEAR(NOW()),'/',MONTH(NOW()))
                 GROUP BY YEAR(date_created),MONTH(date_created);"
 		);
