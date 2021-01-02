@@ -324,8 +324,8 @@ class User_model extends CI_model
 			'nama_samar' => $this->input->post('nama_samar'),
 			'no_hp' => $this->input->post('no_hp'),
 			'email' => $this->input->post('email'),
-			'password' => $this->input->post('password'),
-			'status_aktif' => 0
+			'password' => $this->input->post('password')
+
 		];
 
 		$this->db->insert('tb_peserta', $data);

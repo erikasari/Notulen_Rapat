@@ -30,7 +30,14 @@
 				<li class="nav-item has-treeview">
 					<a href="<?php echo base_url('admin/man_user'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-users"></i>
-						<p>Manajemen User</p>
+						<p>Manajemen Notulen</p>
+					</a>
+				</li>
+
+				<li class="nav-item has-treeview">
+					<a href="<?php echo base_url('admin/man_user'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-users"></i>
+						<p>Manajemen Peserta</p>
 					</a>
 				</li>
 

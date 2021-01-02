@@ -68,11 +68,10 @@ class Auth extends CI_Controller
 
 	public function register()
 	{
-		$data['title'] = 'Sign Up';
 		$this->load->model('User_model');
-		$this->form_validation->set_rules('username', 'nama_peserta', 'required');
-		$this->form_validation->set_rules('nama', 'nama_samar', 'required');
-		$this->form_validation->set_rules('telepon', 'no_hp', 'required');
+		$this->form_validation->set_rules('nama_peserta', 'nama_peserta', 'required');
+		$this->form_validation->set_rules('nama_samar', 'nama_samar', 'required');
+		$this->form_validation->set_rules('no_hp', 'no_hp', 'required');
 		$this->form_validation->set_rules('email', 'email', 'required|trim|is_unique[tb_peserta.email]', array(
 			'is_unique' => 'Alamat Email sudah ada'
 		));
@@ -90,8 +89,8 @@ class Auth extends CI_Controller
 			$this->load->view('auth/register');
 		} else {
 			$this->User_model->registrasiDataUser();
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! Akun Anda Telah Dibuat. Tunggu hingga akun anda diverifikasi</div>');
-			redirect('login');
+			$this->session->set_flashdata('message', 'Selamat! Akun Anda Telah Dibuat. Tunggu hingga akun anda diverifikasi');
+			redirect('auth/register');
 		}
 	}
 }
