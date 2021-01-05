@@ -87,4 +87,15 @@ class Admin_model extends CI_model
 				  WHERE rapat_id = '$id_rapat' AND status_peserta = 1";
 		return $this->db->query($query)->result_array();
 	}
+	public function getpesertaByID($id)
+	{
+		return $this->db->get_where('mst_peserta', ['id_peserta' => $id])->row_array();;
+	}
+	public function verifikasipesertaByID($id)
+	{
+		$this->db->set('status_aktif', 1);
+		$this->db->where('id_peserta', $id);
+		$this->db->update('mst_peserta');
+		return $this->db->affected_rows();
+	}
 }

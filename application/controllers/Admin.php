@@ -127,7 +127,7 @@ class Admin extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['title'] = 'Management Peserta';
-			$data['peserta'] = $this->db->get_where('mst_peserta', ['email' => $this->session->userdata('email')])->row_array();
+			$data['user'] = $this->db->get_where('mst_user', ['email' => $this->session->userdata('email')])->row_array();
 			$data['list_peserta'] = $this->db->get('mst_peserta')->result_array();
 
 			$this->load->view('templates/header', $data);
@@ -162,7 +162,7 @@ class Admin extends CI_Controller
 	public function get_peserta()
 	{
 		$id_peserta = $this->input->post('id_peserta');
-		echo json_encode($this->db->get_where('mst_peserta', ['mst_peserta' => $id_peserta])->row_array());
+		echo json_encode($this->db->get_where('mst_peserta', ['id_peserta' => $id_peserta])->row_array());
 	}
 
 	public function edit_user()
@@ -185,11 +185,9 @@ class Admin extends CI_Controller
 	{
 		$id_peserta = $this->input->post('id_peserta');
 		$username = $this->input->post('username');
-		$level = $this->input->post('level');
 		$is_active = $this->input->post('is_active');
 
 		$this->db->set('username', $username);
-		$this->db->set('level', $level);
 		$this->db->set('is_active', $is_active);
 		$this->db->where('id_peserta', $id_peserta);
 		$this->db->update('mst_peserta');
@@ -366,5 +364,14 @@ class Admin extends CI_Controller
 
 
 		// $this->load->view('admin/email');
+	}
+	public function verifikasi($id)
+	{
+		$this->peserta->verifikasipesertaByID($id);
+		$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" roles="alert" >Pelanggan berhasil diverifikasi!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button></div>');
+		redirect('admin/man_peserta', 'refresh');
 	}
 }
