@@ -27,91 +27,97 @@
     }
 </style>
 
-<body>
-    <div class="container" style="width:80%;">
-        <div id="loginbox" style="margin-top:100px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title font-weight-bolder text-center" style="font-weight:700;">HALAMAN REGISTER</div>
-                    <!-- <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div> -->
-                </div>
-                <div style="padding-top:30px" class="panel-body">
-                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
-                    <?php echo $this->session->flashdata('msg'); ?>
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                    <form id="loginform" class="form-horizontal" role="form" action="<?php echo base_url('auth/register'); ?>" method="post">
-                        <!-- Nama Asli -->
-                        <?php echo form_error('username', '<small class="text-danger pl-1">', '</small>'); ?>
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="register-username" type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" placeholder="Nama Lengkap">
-                        </div>
-                        <!-- Nama Samar -->
-                        <?php echo form_error('nama', '<small class="text-danger pl-1">', '</small>'); ?>
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
-                            <input id="register-nama" type="text" class="form-control" name="nama" value="<?php echo set_value('nama'); ?>" placeholder="Nama Samaran">
-                        </div>
+<>
+    <div class="container" style="width:60%;">
+        <div id="loginbox" style="margin-top:80px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 
-                        <!-- No telepon -->
-                        <?php echo form_error('telepon', '<small class="text-danger pl-1">', '</small>'); ?>
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input id="register-telepon" type="number" class="form-control" name="telepon" value="<?php echo set_value('telepon'); ?>" placeholder="No.telepon">
-                        </div>
 
-                        <!-- Email -->
-                        <?php echo form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="register-email" type="email" class="form-control" name="email" value="<?php echo set_value('email'); ?>" placeholder="Email">
-                        </div>
+            <div class="row">
 
-                        <!-- Password -->
-                        <?php echo form_error('password', '<small class="text-danger pl-1">', '</small>'); ?>
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="register-password" type="password" class="form-control" name="password" placeholder="Password">
+                <div class="form-box">
+                    <div class="panel panel-info">
+                        <div class="panel-heading text-center">
+                            <div class="panel-title font-weight-bolder text-center" style="font-weight:700;">HALAMAN REGISTER</div>
                         </div>
-                        <!-- Confirm pass -->
-                        <!-- Password -->
-                        <?php echo form_error('password2', '<small class="text-danger pl-1">', '</small>'); ?>
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="register-password2" type="password" class="form-control" name="password2" placeholder="Confirm Password">
-                        </div>
-                        <!-- <div class="input-group">
-							<div class="checkbox">
-								<label>
-									<input id="login-remember" type="checkbox" name="remember" class="text-black" value="1"> Remember me
-								</label>
-							</div>
-						</div> -->
-                        <div style="margin-top:10px" class="form-group">
-                            <!-- Button -->
-                            <div class="col-sm-12 controls">
-                                <button type="submit" class="btn btn-primary btn-block"> Register </button>
-                                <!-- <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <?php echo $this->session->flashdata('msg'); ?>
+                                </div>
                             </div>
+                            <form action="<?php echo base_url(); ?>peserta/registration" method="post">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="fname">Nama Lengkap</label>
+                                            <div>
+                                                <input type="text" class="form-control" id="username" name="username" placeholder="Nama Lengkap" required="">
+                                                <span class="text-danger"><?php echo form_error('username'); ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="nama">Nama Samaran</label>
+                                            <div>
+                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Samaran" required="">
+                                                <span class="text-danger"><?php echo form_error('nama'); ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="email">Email</label>
+                                    <div>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="">
+                                        <span class="text-danger"><?php echo form_error('email'); ?></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="telepon">Telepon</label>
+                                    <div>
+                                        <input type="text" class="form-control" id="telepon" name="telepon" placeholder="telepon" required="">
+                                        <span class="text-danger"><?php echo form_error('telepon'); ?></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="pswd">Password</label>
+                                    <div>
+                                        <input type="password" class="form-control" id="pswd" name="password" placeholder="Password" required="">
+                                        <span class="text-danger"><?php echo form_error('password'); ?></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="cn-pswd">Confirm Password</label>
+                                    <div>
+                                        <input type="password" class="form-control" id="cn-pswd" name="confirmpswd" placeholder="Confirm Password" required="">
+                                        <span class="text-danger"><?php echo form_error('confirmpswd'); ?></span>
+                                    </div>
+                                </div>
+                                <div style="margin-top:10px" class="form-group">
+
+                                    <div class="col-sm-12 controls">
+                                        <button type="submit" class="btn btn-primary btn-block"> <span class="glyphicon glyphicon-log-in"></span> Register </button>
+
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-
-                        <hr>
-                        <div class="text-center">
-                            <a class="small" href="<?= base_url('auth/index') ?>">Sudah Punya Akun? Login</a>
+                        <div class="panel-footer text-center">
+                            <a class="small" href=<?php echo base_url('auth/index'); ?>>Sudah Pumya Akum ? Silahkan Login </a>
                         </div>
-
-                    </form>
-
-
-
+                    </div>
                 </div>
+
             </div>
         </div>
-
     </div>
-
+    </div>
+    </div>
     <script src="<?= base_url('assets/swal/'); ?>sweetalert2.all.min.js"></script>
     <script src="<?= base_url('assets/swal/'); ?>myscript.js"></script>
-</body>
+    </body>
 
 </html>

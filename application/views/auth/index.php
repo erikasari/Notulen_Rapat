@@ -50,18 +50,10 @@
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 							<input id="login-password" type="password" class="form-control" name="password" placeholder="Password">
 						</div>
-						<!-- <div class="input-group">
-							<div class="checkbox">
-								<label>
-									<input id="login-remember" type="checkbox" name="remember" class="text-black" value="1"> Remember me
-								</label>
-							</div>
-						</div> -->
 						<div style="margin-top:10px" class="form-group">
 							<!-- Button -->
 							<div class="col-sm-12 controls">
 								<button type="submit" class="btn btn-primary btn-block"> <span class="glyphicon glyphicon-log-in"></span> Login </button>
-								<!-- <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
 							</div>
 						</div>
 						<hr>

@@ -44,6 +44,21 @@ class Auth extends CI_Controller
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center font-weight-bolder" role="alert">User Tidak aktif</div>');
 					redirect('auth/index');
 				}
+			}
+			if ($user1) {
+				if ($user1['is_active'] == 1) {
+					if (password_verify($password, $user1['password'])) {
+						$data1 = [
+							'id_peserta' => $user1['id_peserta'],
+							'email' => $user1['email']
+						];
+						$this->session->set_userdata($data1);
+						redirect('');
+					} else {
+						$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center font-weight-bolder" role="alert">Password salah11111</div>');
+						redirect('auth/index');
+					}
+				}
 			} else {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center font-weight-bolder" role="alert">Email dan Password tidak sama</div>');
 				redirect('auth/index');
@@ -69,7 +84,7 @@ class Auth extends CI_Controller
 
 	public function register()
 	{
-		$this->load->model('User_model');
+		$this->load->model('Peserta_model');
 		$this->form_validation->set_rules('username', 'username', 'required');
 		$this->form_validation->set_rules('nama', 'nama', 'required');
 		$this->form_validation->set_rules('telepon', 'telepon', 'required');

@@ -367,11 +367,11 @@ class Admin extends CI_Controller
 	}
 	public function verifikasi($id)
 	{
-		$this->peserta->verifikasipesertaByID($id);
+		$this->user->verifikasipesertaByID($id);
 		$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" roles="alert" >Pelanggan berhasil diverifikasi!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button></div>');
-		redirect('admin/man_peserta', 'refresh');
+		redirect('admin/peserta', 'refresh');
 	}
 }
