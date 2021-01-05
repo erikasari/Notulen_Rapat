@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Des 2020 pada 09.11
+-- Waktu pembuatan: 05 Jan 2021 pada 07.17
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.1
 
@@ -56,9 +56,20 @@ CREATE TABLE `mst_peserta` (
   `username` varchar(100) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `noHp` int(13) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `telepon` int(13) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `date_created` date NOT NULL,
+  `image` text NOT NULL,
+  `is_active` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `mst_peserta`
+--
+
+INSERT INTO `mst_peserta` (`id_peserta`, `username`, `nama`, `email`, `telepon`, `password`, `date_created`, `image`, `is_active`) VALUES
+(1, 'Erika Sari', 'er', 'erika@gmail.com', 2147483647, '12345', '0000-00-00', '', 1),
+(2, 'Noviar Graha', 'supe', 'noviargraha@gmail.com', 888888888, 'noviar', '0000-00-00', '', 0);
 
 -- --------------------------------------------------------
 
@@ -82,9 +93,10 @@ CREATE TABLE `mst_user` (
 --
 
 INSERT INTO `mst_user` (`id_user`, `nama`, `email`, `password`, `level`, `date_created`, `image`, `is_active`) VALUES
-(15, 'Erika Sari', 'admin@gmail.com', '$2y$10$1CGoPtKRjQXU.kjmLiIoueroxm6TSleJ8NjyIKTKeDzOqvmyJcYwW', 'Admin', '2019-10-02', 'LogoBaru.PNG', 1),
-(16, 'Erika Sari', 'user@gmail.com', '$2y$10$NGmQodWSoUG0G/OILB/i9.MmegCLTLi0JjsA5VS/goZI3hK64mefm', 'User', '2019-10-02', 'LogoBaru.PNG', 1),
-(17, 'Erika Sari', 'erikasari043@gmail.com', 'erikasari', 'peserta', '2020-12-22', 'LogoBaru.PNG', 1);
+(15, 'Erika Sari', 'admin@gmail.com', '$2y$10$1CGoPtKRjQXU.kjmLiIoueroxm6TSleJ8NjyIKTKeDzOqvmyJcYwW', 'Admin', '2019-10-02', 'bg_register.jpg', 1),
+(16, 'Erika Sari', 'user@gmail.com', '$2y$10$NGmQodWSoUG0G/OILB/i9.MmegCLTLi0JjsA5VS/goZI3hK64mefm', 'User', '2019-10-02', 'bg_register.jpg', 1),
+(17, 'Erika Sari', 'erikasari043@gmail.com', 'erikasari', '', '2020-12-22', 'bg_register.jpg', 0),
+(18, 'Erika Sari', 'noviargraha@gmail.com', '$2y$10$TfmVJMmdTbY0IKMeoqKmbOUcLIAQb8EiBA8kjzHUYu4QQGBOfjbma', 'User', '2020-12-26', 'bg_register.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -121,9 +133,11 @@ CREATE TABLE `tb_peserta` (
   `id_peserta` int(11) NOT NULL,
   `rapat_id` int(11) NOT NULL,
   `rapat_kode` text NOT NULL,
-  `nama_peserta` text NOT NULL,
-  `no_hp` text NOT NULL,
+  `nama_peserta` varchar(100) NOT NULL,
+  `nama_samar` varchar(100) NOT NULL,
+  `no_hp` varchar(12) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `divisi` text NOT NULL,
   `jabatan` text NOT NULL,
   `status_peserta` int(11) NOT NULL
@@ -133,13 +147,17 @@ CREATE TABLE `tb_peserta` (
 -- Dumping data untuk tabel `tb_peserta`
 --
 
-INSERT INTO `tb_peserta` (`id_peserta`, `rapat_id`, `rapat_kode`, `nama_peserta`, `no_hp`, `email`, `divisi`, `jabatan`, `status_peserta`) VALUES
-(2, 2, 'RAP/002/003', 'Samuel', '1234569877', 'samuel@gmail.com', 'Akunting', 'STAF Akunting', 1),
-(3, 1, 'RAP/002/001', 'Donny Kurniawan', '08995625604', '', 'Gudang', 'Staf Gudang', 1),
-(5, 1, 'RAP/002/001', 'Audi Van Roy', '9874563123', '', 'Logistik', 'Staf Logistik', 1),
-(6, 2, 'RAP/002/003', 'Si Cantik Jembatan Kuning', '242353', '', '45345', 'Admin', 1),
-(8, 3, 'RAP/002/004', 'Harjo Kusuma', '3214566789', '', 'Pembelian', 'Kabag Pembelian', 1),
-(9, 3, 'RAP/002/004', 'Salman', '082345667', 'salman@gmail.com', 'keuangan', 'kabag penjualan', 1);
+INSERT INTO `tb_peserta` (`id_peserta`, `rapat_id`, `rapat_kode`, `nama_peserta`, `nama_samar`, `no_hp`, `email`, `password`, `divisi`, `jabatan`, `status_peserta`) VALUES
+(2, 2, 'RAP/002/003', 'Samuel', '', '1234569877', 'samuel@gmail.com', '', 'Akunting', 'STAF Akunting', 1),
+(3, 1, 'RAP/002/001', 'Donny Kurniawan', '', '2147483647', '', '', 'Gudang', 'Staf Gudang', 1),
+(5, 1, 'RAP/002/001', 'Audi Van Roy', '', '2147483647', '', '', 'Logistik', 'Staf Logistik', 1),
+(6, 2, 'RAP/002/003', 'Si Cantik Jembatan Kuning', '', '242353', '', '', '45345', 'Admin', 1),
+(8, 3, 'RAP/002/004', 'Harjo Kusuma', '', '2147483647', '', '', 'Pembelian', 'Kabag Pembelian', 1),
+(9, 3, 'RAP/002/004', 'Salman', '', '82345667', 'salman@gmail.com', '', 'keuangan', 'kabag penjualan', 1),
+(10, 0, '', 'Erika Sari', 'er', '2147483647', 'erika@gmail.com', '12345', '', '', 0),
+(11, 0, '', 'Noviar Graha', 'noo', '085654321778', 'noviargraha@gmail.com', '12345', '', '', 0),
+(12, 0, '', 'adadeh', 'ada', '089764534223', 'ada@gmail.com', '12345', '', '', 0),
+(13, 3, 'RAP/002/004', 'Erika Sari', '', '0854325567', 'erikasari@gmail.com', '', 'keuangan', 'MAHASISWA', 1);
 
 -- --------------------------------------------------------
 
@@ -298,13 +316,13 @@ ALTER TABLE `mst_jenis`
 -- AUTO_INCREMENT untuk tabel `mst_peserta`
 --
 ALTER TABLE `mst_peserta`
-  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `mst_user`
 --
 ALTER TABLE `mst_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_notulen`
@@ -316,7 +334,7 @@ ALTER TABLE `tb_notulen`
 -- AUTO_INCREMENT untuk tabel `tb_peserta`
 --
 ALTER TABLE `tb_peserta`
-  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rapat`
